@@ -1,0 +1,271 @@
+/* Importando fonte */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Open+Sans:wght@400;500&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Roboto+Condensed:wght@400;700&family=Roboto:wght@900&display=swap');
+
+/* Geral */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+/* Estilização do corpo */
+body {
+    font-family: 'Open Sans', serif;
+    background: linear-gradient(180deg, rgba(89, 76, 238, 1) 0%, #0f88ca 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    transition: height .6s ease;
+    overflow: hidden;
+}
+
+/* Estilização do container do título */
+h1{
+  text-align: center;
+  margin-top: -5px;
+  margin-bottom: 15px;
+  font-size: 23px;
+}
+
+/* Estilização do container do "aplicativo" */
+.container{
+    position: relative;
+    width: 400px;
+    height: 130px;
+    background: rgba(255, 255, 255, .2);
+    border-radius: 16px;
+    padding: 20px;
+    color: #fff;
+    backdrop-filter: blur(30px);
+    border: 2px solid rgba(255, 255, 255, .2);
+    transition: height .6s ease;
+  }
+
+  /* Estilização da div/botão de pesquisa */
+  .busca-box {
+    position: relative;
+    width: 100%;
+    height: 55px;
+    display: flex;
+    align-items: center;
+  }
+
+  .busca-box i {
+    position: absolute;
+    left: 10px;
+    font-size: 28px;
+  }
+
+  .busca-box input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    outline: none;
+    border-radius: 10px;
+    font-size: 22px;
+    color: #fff;
+    font-weight: 500;
+    text-transform: uppercase;
+    padding: 0 48px 0 42px;
+  }
+
+  .busca-box input::placeholder {
+    color: #fff;
+    text-transform: capitalize;
+    font-size: 17px;
+  }
+
+  .busca-box button {
+    position: absolute;
+    right: 0;
+    width: 40px;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 28px;
+    color: #fff;
+    padding: 0 40px 0 5px;
+    cursor: pointer;
+  }
+
+  /* Estilização da exibição das principais informações */
+  .clima-box {
+    text-align: center;
+    margin: 40px 0;
+  }
+
+  .clima-box,
+  .clima-detalhes,
+  .nao-loc {
+    overflow: hidden;
+    visibility: hidden;
+  }
+
+  .clima-box.active,
+  .clima-detalhes.active,
+  .nao-loc.active {
+    visibility: visible;
+  }
+
+  /* manipulando transform, transition e transition-delay, cria-se os efeitos visuais de movimento */
+  
+  .clima-box .box,
+  .nao-loc .box {
+    transform: translateY(-100%);
+  }
+
+  .clima-box.active .box,
+  .nao-loc.active .box {
+    transform: translateY(0%);
+    transition: transform 1s ease;
+    transition-delay: .6s;
+  }
+
+  .clima-box .box .info-clima {
+    transform: translateY(-120%);
+  }
+
+  /* Transição para mudança de ativação */
+  .container.active .clima-box .box .info-clima,
+  .container.active .clima-detalhes .umidade .info-umidade,
+  .container.active .clima-detalhes .vento .info-vento {
+    transform: translateY(0%);
+    transition: transform 1s ease;
+  }
+
+  /* Definição do tamanho da imagem do box-clima */
+  .clima-box img {
+    width: 60%;
+  }
+
+  /* Estilização da exibição da temperatura */
+  .clima-box .temperatura {
+    position: relative;
+    font-size: 64px;
+    line-height: 1;
+    font-weight: 700;
+    margin: 20px 0 6px -30px;
+  }  
+
+  .clima-box .temperatura span {
+    position: absolute;
+    font-size: 24px;
+    margin-left: 4px;
+  }
+
+  /* Estilização da exibição do estado do vlima */
+  .clima-box .descricao {
+    font-size: 22px;
+    font-weight: 500;
+    text-transform: capitalize;
+  }
+
+/* Estilização da exibição das informações gerais */
+  .clima-detalhes {
+    position: absolute;
+    bottom: 40px;
+    left: 0;
+    width: 100%;
+    padding: 0 20px;
+    display: flex;
+  }
+
+  .clima-detalhes .umidade,
+  .clima-detalhes .vento{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    transform: translateY(-100%);
+  }
+
+  .clima-detalhes.active .umidade,
+  .clima-detalhes.active .vento{
+    transform: translateY(0%);
+    transition: transform 1s ease;
+    transition-delay: 1.2s;
+  }
+
+  .clima-detalhes .umidade .info-umidade,
+  .clima-detalhes .vento .info-vento{
+    transform: translateY(-100%);
+    overflow: hidden;
+  }
+  
+  .clima-detalhes .umidade {
+    padding-left: 20px;
+    justify-content: flex-start;
+  }
+
+  .clima-detalhes .vento{
+    padding-right: 20px;
+    justify-content: flex-end;
+  }
+
+  .clima-detalhes i {
+    font-size: 56px;
+    margin-right: 10px;
+  }
+
+  .clima-detalhes span {
+    display: inline-block;
+    font-size: 22px;
+    font-weight: 500;
+  }
+
+  .clima-detalhes p{
+    font-size: 14px;
+    font-weight: 500;
+   }
+
+  /* Estilização para caso a localização não seja encontrada */
+  .nao-loc {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    margin-top: 130px;
+  }
+
+  .nao-loc img{
+    width: 65%;
+  }
+
+  .nao-loc p{
+    font-size: 21px;
+    font-weight: 650;
+    margin-top: 12px;
+  }
+
+    /* Escondendo o cidade-mostra */
+  .cidade-mostra{
+    display: none;
+  }
+
+/* Estilização para ficar responsivo */
+  @media only screen and (max-device-width: 900px) {
+    .container {
+      width: 96%;
+      height: 180px;
+    }
+
+    h1{
+      font-size: 21px;
+    }
+
+    .busca-box input::placeholder {
+      font-size: 15px;
+    }
+
+    .clima-detalhes .umidade,
+    .clima-detalhes .vento{
+      width: 100%;
+      height: 80px;
+      margin-left: -3%;
+      margin-bottom: -10px;
+    }
+  }  
